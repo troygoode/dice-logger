@@ -6,9 +6,17 @@ body {
   font-family: monospace;
 }
 
+.is-danger.is-5e {
+  background-color: #df0000;
+}
+button.is-5e:hover {
+  background-color: #9c0c0f !important;
+}
+
 .dl-code {
   display: inline-block;
   margin-top: 10px;
+  border-radius: 10px;
 }
 
 .dl-entry {

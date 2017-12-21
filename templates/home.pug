@@ -14,12 +14,12 @@ html(lang='en')
         form(method='POST', action='/')
           .field
             .control.has-text-centered
-              button.button.is-primary.is-large
+              button.button.is-danger.is-5e.is-large
                 span.icon
                   i.fas.fa-plus
                 span Start a Log
 
-    section.hero.is-primary
+    section.hero.is-danger.is-5e
       .hero-body
         .container
 
@@ -29,9 +29,11 @@ html(lang='en')
             span and accountablity when rolling your
             br
             if entries && entries.length
-              code.dl-code #{entries[0].roll}
+              code.dl-code.has-text-black
+                span #{entries[0].roll}
             else
-              code.dl-code 1d20
+              code.dl-code.has-text-black
+                span 1d20
 
     section.hero.is-light
       .hero-body
@@ -46,7 +48,7 @@ html(lang='en')
             for entry in entries
               +entry(entry)
 
-    section.hero.is-primary
+    section.hero.is-danger.is-5e
       .hero-body
         .container
           form(method='POST')

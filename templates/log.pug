@@ -20,12 +20,12 @@ html(lang='en')
             form(method='POST', action='/')
               .field
                 .control.has-text-centered
-                  button.button.is-primary
+                  button.button.is-danger.is-5e
                     span.icon
                       i.fas.fa-plus
                     span New Log
 
-    section.hero.is-primary
+    section.hero.is-danger.is-5e
       .hero-body
         .container
           if log.name && log.name.length
@@ -60,7 +60,7 @@ html(lang='en')
                     p.help Use the format XdY or XdY+Z. For example: <code>1d20+1</code>
               .field
                 .control
-                  button.button.is-primary
+                  button.button.is-danger.is-5e
                     span.icon
                       i.fas.fa-cube
                     span Roll!
