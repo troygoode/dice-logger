@@ -4,20 +4,15 @@ mixin entry(entry)
       .media-left
         .content
           .dl-entry-result.title.is-1.has-text-centered #{entry.result}
+          .has-text-centered: .tag.is-info.is-monospace #{entry.roll}
       .media-content
         .content
           if entry.message && entry.message.length
             blockquote.dl-entry-message.has-text-weight-semibold #{entry.message}
           else
-            div.dl-entry-message
-          .level.dl-entry-bottom
-            .level-left
-              .level-item
-                div.tag.is-info.is-monospace #{entry.roll}
-            .level-right
-              .level-item
-                div.is-size-7.has-text-grey.has-text-right
-                  span #{entry.created_at}
-                  a(href=`/${entry.log_id}#${entry.created_at.getTime()}`).has-text-grey
-                    span.icon
-                      i.fas.fa-share-square
+            blockquote.dl-entry-message.has-text-grey-light: i No message provided.
+          div.is-size-7.has-text-grey.has-text-right
+            span #{entry.created_at.toLocaleDateString()} #{entry.created_at.toLocaleTimeString('en-US', { hour12: true })}
+            a(href=`/${entry.log_id}#${entry.created_at.getTime()}`).has-text-grey
+              span.icon
+                i.fas.fa-share-square
