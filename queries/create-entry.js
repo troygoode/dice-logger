@@ -9,7 +9,7 @@ module.exports = async (pg, logId, message, roll) => {
 
   const rollResult = roller.roll(roll).result
 
-  const results = await pg.query({
+  await pg.query({
     name: 'create-entry',
     text: 'INSERT INTO entries (log_id, message, roll, result) VALUES ($1, $2, $3, $4);',
     values: [logId, message, roll, rollResult]
