@@ -16,7 +16,9 @@ const DEFAULT_PORT = 3000
 
 ;(async function () {
   const app = express()
-  const pg = new PostgresClient(parseConnectionString(process.env.CONNECTION_STRING || DEFAULT_CONNECTION_STRING))
+  const connectionString = parseConnectionString(process.env.CONNECTION_STRING || DEFAULT_CONNECTION_STRING)
+  console.log(connectionString)
+  const pg = new PostgresClient(connectionString)
   const port = process.env.PORT || DEFAULT_PORT
 
   await pg.connect()
