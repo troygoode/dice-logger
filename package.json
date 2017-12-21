@@ -1,0 +1,21 @@
+{
+  "name": "dicelog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "boom": "^7.1.1",
+    "express": "^4.16.2",
+    "helmet": "^3.9.0",
+    "pg": "^7.4.0",
+    "pg-connection-string": "^2.0.0",
+    "pug": "^2.0.0-rc.4",
+    "roll": "^1.2.0"
+  }
+}

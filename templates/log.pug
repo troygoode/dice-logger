@@ -1,0 +1,49 @@
+doctype html
+html(lang='en')
+  head
+    title Dice Logger: Log ##{log.id}
+  body
+    if log.name && log.name.length
+      h1 #{log.name}
+    else
+      h1 Log ##{log.id}
+
+    if edit
+      h2 EDIT
+      div
+        label Edit Link
+        div: a(href=`/${log.id}/edit/${log.key}`) #{baseUrl}/#{log.id}/edit/#{log.key}
+
+      form(method='POST')
+        h3 Change Log Title
+        div
+          label Title
+          div: input(type='text', name='name', value=log.name, maxlength=32)
+        div: input(type='submit', text='Save')
+
+      form(method='POST', action=`/${log.id}/edit/${log.key}/entries`)
+        h3 Add Roll
+        if error && error.length
+          div ERROR
+        div
+          label Message
+          div: input(type='text', name='message', value=message, maxlength=1024, autofocus)
+        div
+          label Roll
+          div: input(type='text', name='roll', value=(roll || '1d20'), maxlength=32)
+        div: input(type='submit', text='Save')
+
+    h2 Rolls
+    div
+      label Share Link
+      div: a(href=`/${log.id}`) #{baseUrl}/#{log.id}
+    if !entries || !entries.length
+      div Nothing has been rolled for this log yet.
+    else
+      ul
+        each entry in entries
+          li: ul
+            li Message: #{entry.message}
+            li Roll: #{entry.roll}
+            li Result: #{entry.result}
+            li Timestamp: #{entry.created_at}
