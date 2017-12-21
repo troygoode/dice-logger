@@ -6,6 +6,7 @@ const { Client: PostgresClient } = require('pg')
 const { parse: parseConnectionString } = require('pg-connection-string')
 
 const homeRoute = require('./routes/home')
+const faqRoute = require('./routes/faq')
 const createLogRoute = require('./routes/create-log')
 const logRoute = require('./routes/log')
 const editLogRoute = require('./routes/edit-log')
@@ -27,6 +28,7 @@ const DEFAULT_PORT = 3000
   app.use(bodyParser.urlencoded({ extended: false }))
 
   homeRoute(app, pg)
+  faqRoute(app, pg)
   createLogRoute(app, pg)
   logRoute(app, pg)
   editLogRoute(app, pg)

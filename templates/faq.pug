@@ -1,0 +1,57 @@
+doctype html
+html(lang='en')
+  head
+    title DICE LOGGER – F.A.Q.
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='/bulma.css')
+    link(rel='stylesheet', href='/fontawesome/css/fontawesome-all.min.css')
+    link(rel='stylesheet', href='/dice-logger.css')
+  body
+    nav.navbar(role='navigation', aria-label='main navigation')
+      .navbar-brand
+        a.navbar-item(href='/').title.is-3.is-uppercase Dice Logger
+      .navbar-menu
+        .navbar-end
+          .navbar-item
+            form(method='POST', action='/')
+              .field
+                .control.has-text-centered
+                  button.button.is-danger.is-5e
+                    span.icon
+                      i.fas.fa-plus
+                    span New Log
+
+    section.hero.is-danger.is-5e
+      .hero-body
+        .container
+          h1.title <b>F</b>requently <b>A</b>sked <b>Q</b>uestions
+
+    section.section
+      .container
+        .content
+
+          h2.title#faq-why Why does this exist?
+          p For my personal campaign we use <a href='https://roll20.net' target='_blank'>Roll20</a> as our Virtual Table Top. It has a dice rolling tool which is <em>great</em> for mid-session combat and skill rolls, but for some rolls – like your HP increase on level up – I wanted something a bit less cluttered, that wouldn't just get lost amongst a million messages, and that provided both transparency and accountability to make sure everything is on the up and up.
+          p Another use case is that we use forum posts to track the party's downtime activities betweem sessions. In an effort to reduce the amount of back-and-forth necessary I've been rolling the results of the PC's expressed choices on their behalf, and I use <strong>Dice Logger</strong> so they can see there is no funny-business behind the screen.
+
+          hr
+
+          h2.title#faq-roll-syntax What kind of rolls can I make?
+
+          p Dice Logger supports a number of different kinds of rolls. The base syntax is <code>XdY</code> - if you want to roll 3x D6 dice, you'd type <code>3d6</code>. Here are a few other examples:
+          blockquote
+            code.code 3d6
+            br
+            code.code 1d20
+            br
+            code.code 1d100
+
+          p You can also perform simple arithmetic by adding/subtracting numbers from the result:
+          blockquote
+            code.code 1d20+3
+            br
+            code.code 1d10-1
+
+          p If you're rolling up a new character in <span class='icon'><i class='fab fa-d-and-d'></i></span><strong>Dungeons & Dragons</strong>&trade;, you might find yourself needing to roll 4x D6 and keep the best 3 results. You can do that like so:
+          blockquote
+            code.code 4d6b3

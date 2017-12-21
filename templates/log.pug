@@ -55,9 +55,18 @@ html(lang='en')
                 .control
                   input.input.is-monospace(type='text', name='roll', value=(roll || '1d20'), maxlength=8, class={'is-danger': error && error.length}, autofocus=(error && error.length))
                   if error && error.length
-                    p.help.is-danger This roll is invalid. Use the format XdY or XdY+Z. For example: 1d20+1
+                    p.help.is-danger
+                      | <strong>This roll is invalid.</strong> 
+                      | Look here for help on your dice roll options: 
+                      span.icon
+                        i.far.fa-question-circle
+                      a.has-color-primary(href='/faq#faq-roll-syntax', target='_blank', style='text-decoration: underline;') F.A.Q.
                   else
-                    p.help Use the format XdY or XdY+Z. For example: <code>1d20+1</code>
+                    p.help
+                      | Look here for help on your dice roll options: 
+                      span.icon
+                        i.far.fa-question-circle
+                      a.has-color-primary(href='/faq#faq-roll-syntax', target='_blank', style='text-decoration: underline;') F.A.Q.
               .field
                 .control
                   button.button.is-danger.is-5e
