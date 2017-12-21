@@ -1,0 +1,24 @@
+body {
+  cursor: default;
+}
+
+.is-monospace {
+  font-family: monospace;
+}
+
+.dl-code {
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.dl-entry {
+  position: relative;
+}
+.dl-entry-result {
+  min-width: 60px;
+}
+.dl-entry-message {
+  min-height: 15px;
+}
+.dl-entry-bottom {
+}

@@ -1,9 +1,13 @@
 const pug = require('pug')
+const fetchRecentEntries = require('../queries/fetch-recent-entries')
 
-module.exports = (app) => {
-  app.get('/', (req, res, next) => {
+module.exports = (app, pg) => {
+  app.get('/', async (req, res, next) => {
     try {
-      res.send(pug.renderFile('templates/index.pug'))
+      const entries = await fetchRecentEntries(pg)
+      res.send(pug.renderFile('templates/home.pug', {
+        entries: entries
+      }))
     } catch (err) {
       next(err)
     }

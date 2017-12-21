@@ -1,0 +1,68 @@
+doctype html
+html(lang='en')
+  include ./mixins.pug
+  head
+    title DICE LOGGER
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='/bulma.css')
+    link(rel='stylesheet', href='/fontawesome/css/fontawesome-all.min.css')
+    link(rel='stylesheet', href='/dice-logger.css')
+  body
+    section.section
+      .container
+        h1.title.is-1.has-text-centered.is-uppercase Dice Logger
+        form(method='POST', action='/')
+          .field
+            .control.has-text-centered
+              button.button.is-primary.is-large
+                span.icon
+                  i.fas.fa-plus
+                span Start a Log
+
+    section.hero.is-primary
+      .hero-body
+        .container
+
+          h2.title.is-1.has-text-white.has-text-centered
+            span Create a free, shareable log for visibilty
+            br
+            span and accountablity when rolling your
+            br
+            if entries && entries.length
+              code.dl-code #{entries[0].roll}
+            else
+              code.dl-code 1d20
+
+    section.hero.is-light
+      .hero-body
+        .container
+          if !entries || !entries.length
+            article.message.is-dark
+              .message-header
+                p Hmmm...
+              .message-body
+                p Nothing has been logged... yet.
+          else
+            for entry in entries
+              +entry(entry)
+
+    section.hero.is-primary
+      .hero-body
+        .container
+          form(method='POST')
+            .field
+              .control.has-text-centered
+                button.button.is-white.is-large
+                  span.icon
+                    i.fas.fa-plus
+                  span Start a Log
+
+    section.section
+      .container
+        .has-text-centered
+          div Source code available on Github:
+          div
+            a(href='https://github.com/troygoode/dice-logger')
+              span.icon
+                i.fab.fa-github
+              span https://github.com/troygoode/dice-logger

@@ -39,17 +39,18 @@ BEGIN TRANSACTION;
       roll TEXT
         NOT NULL
         DEFAULT ''
-        CHECK (CHAR_LENGTH(roll) <= 16),
+        CHECK (CHAR_LENGTH(roll) <= 8),
       result TEXT
         NOT NULL
         DEFAULT ''
-        CHECK (CHAR_LENGTH(result) <= 16),
+        CHECK (CHAR_LENGTH(result) <= 7),
 
       created_at TIMESTAMPTZ
         NOT NULL
         DEFAULT NOW()::TIMESTAMPTZ
     );
 
-  CREATE INDEX entries_idx ON entries (log_id, created_at DESC);
+  CREATE INDEX log_entries_idx ON entries (log_id, created_at DESC);
+  CREATE INDEX recent_entries_idx ON entries (created_at DESC);
 
 COMMIT;

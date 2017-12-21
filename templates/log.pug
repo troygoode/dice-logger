@@ -1,49 +1,113 @@
 doctype html
 html(lang='en')
+  include ./mixins.pug
   head
-    title Dice Logger: Log ##{log.id}
-  body
     if log.name && log.name.length
-      h1 #{log.name}
+      title DICE LOGGER – #{log.name}
     else
-      h1 Log ##{log.id}
+      title DICE LOGGER – Log ##{log.id}
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='/bulma.css')
+    link(rel='stylesheet', href='/fontawesome/css/fontawesome-all.min.css')
+    link(rel='stylesheet', href='/dice-logger.css')
+  body
+    nav.navbar(role='navigation', aria-label='main navigation')
+      .navbar-brand
+        a.navbar-item(href='/').title.is-3.is-uppercase Dice Logger
+      .navbar-menu
+        .navbar-end
+          .navbar-item
+            form(method='POST', action='/')
+              .field
+                .control.has-text-centered
+                  button.button.is-primary
+                    span.icon
+                      i.fas.fa-plus
+                    span New Log
+
+    section.hero.is-primary
+      .hero-body
+        .container
+          if log.name && log.name.length
+            h1.title #{log.name}
+          else
+            h1.title Log ##{log.id}
+          if edit
+            .subtitle.is-6
+              span Share your rolls: 
+              a(href=`/${log.id}`)
+                span.icon
+                  i.fas.fa-share-square
+                span #{baseUrl}/#{log.id}
 
     if edit
-      h2 EDIT
-      div
-        label Edit Link
-        div: a(href=`/${log.id}/edit/${log.key}`) #{baseUrl}/#{log.id}/edit/#{log.key}
+      section.hero.is-light
+        .hero-body
+          .container
 
-      form(method='POST')
-        h3 Change Log Title
-        div
-          label Title
-          div: input(type='text', name='name', value=log.name, maxlength=32)
-        div: input(type='submit', text='Save')
+            form(method='POST', action=`/${log.id}/edit/${log.key}/entries`)
+              .field
+                label.label Log Message
+                .control
+                  input.input.is-large(type='text', name='message', value=message, maxlength=1024, autofocus=(!error || !error.length), placeholder='Enter a message to describe this roll for future reference. "My HP roll for level 5."')
+              .field
+                label.label Dice Roll
+                .control
+                  input.input.is-monospace(type='text', name='roll', value=(roll || '1d20'), maxlength=8, class={'is-danger': error && error.length}, autofocus=(error && error.length))
+                  if error && error.length
+                    p.help.is-danger This roll is invalid. Use the format XdY or XdY+Z. For example: 1d20+1
+                  else
+                    p.help Use the format XdY or XdY+Z. For example: <code>1d20+1</code>
+              .field
+                .control
+                  button.button.is-primary
+                    span.icon
+                      i.fas.fa-cube
+                    span Roll!
 
-      form(method='POST', action=`/${log.id}/edit/${log.key}/entries`)
-        h3 Add Roll
-        if error && error.length
-          div ERROR
-        div
-          label Message
-          div: input(type='text', name='message', value=message, maxlength=1024, autofocus)
-        div
-          label Roll
-          div: input(type='text', name='roll', value=(roll || '1d20'), maxlength=32)
-        div: input(type='submit', text='Save')
+    section.section
+      .container
 
-    h2 Rolls
-    div
-      label Share Link
-      div: a(href=`/${log.id}`) #{baseUrl}/#{log.id}
-    if !entries || !entries.length
-      div Nothing has been rolled for this log yet.
-    else
-      ul
-        each entry in entries
-          li: ul
-            li Message: #{entry.message}
-            li Roll: #{entry.roll}
-            li Result: #{entry.result}
-            li Timestamp: #{entry.created_at}
+        if !entries || !entries.length
+          article.message.is-danger
+            .message-header
+              p Uh oh!
+            .message-body
+              p Nothing has been rolled for this log yet!
+        else
+          each entry in entries
+            +entry(entry)
+          if entries.length < 100
+            .has-text-grey.has-text-centered Showing all #{entries.length} log entries.
+          else
+            .has-text-grey.has-text-centered Showing most recent 100 log entries.
+
+    if edit
+      section.hero.is-light
+        .hero-body
+          .container
+
+          .has-text-centered.is-size-7.has-text-grey
+            div.has-text-weight-bold
+              span.icon
+                i.fas.fa-exclamation-triangle
+              span Save the URL below so you can add rolls to this log later. Only this URL allows you to add to your log.
+            div
+              a(href=`/${log.id}/edit/${log.key}`)
+                span.icon
+                  i.far.fa-edit
+                span #{baseUrl}/#{log.id}/edit/#{log.key}
+            br
+
+            hr
+
+            form(method='POST')
+              .field
+                .control
+                  input.input(type='text', name='name', value=log.name, maxlength=32, placeholder=(log.name || log.id))
+              .field
+                .control
+                  button.button
+                    span.icon
+                      i.far.fa-save
+                    span Rename Log

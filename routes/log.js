@@ -1,7 +1,7 @@
 const pug = require('pug')
 const boom = require('boom')
 const fetchLog = require('../queries/fetch-log')
-const fetchEntries = require('../queries/fetch-entries')
+const fetchLogEntries = require('../queries/fetch-log-entries')
 
 const DEFAULT_BASE_URL = 'http://localhost'
 
@@ -13,7 +13,7 @@ module.exports = (app, pg) => {
         throw boom.notFound()
       }
 
-      const entries = await fetchEntries(pg, req.params.logId)
+      const entries = await fetchLogEntries(pg, req.params.logId)
 
       res.send(pug.renderFile('templates/log.pug', {
         edit: false,
@@ -33,7 +33,7 @@ module.exports = (app, pg) => {
         throw boom.notFound()
       }
 
-      const entries = await fetchEntries(pg, req.params.logId)
+      const entries = await fetchLogEntries(pg, req.params.logId)
 
       res.send(pug.renderFile('templates/log.pug', {
         edit: true,

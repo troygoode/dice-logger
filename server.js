@@ -22,6 +22,7 @@ const DEFAULT_PORT = 3000
   await pg.connect()
 
   app.use(helmet())
+  app.use(express.static('static'))
   app.use(bodyParser.urlencoded({ extended: false }))
 
   homeRoute(app, pg)

@@ -10,10 +10,11 @@ module.exports = (app, pg) => {
         throw boom.notFound()
       }
 
-      const { message, roll } = req.body
+      const message = req.body.message.trim()
+      const roll = req.body.roll.trim()
       await createEntry(pg, req.params.logId, message.trim(), roll.trim())
 
-      res.redirect(`/${req.params.logId}/edit/${req.params.key}`)
+      res.redirect(`/${req.params.logId}/edit/${req.params.key}?roll=${encodeURIComponent(roll)}`)
     } catch (err) {
       if (boom.isBoom(err) && err.message === 'Bad Request') {
         const error = encodeURIComponent(err.message)
