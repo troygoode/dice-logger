@@ -37,3 +37,8 @@ button.is-5e:hover {
 .dl-page-home .dl-log-name {
   display: inline;
 }
+
+.navbar-brand:hover .navbar-item {
+  background-color: transparent;
+  color: #df0000;
+}

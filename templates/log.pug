@@ -11,34 +11,30 @@ html(lang='en')
     link(rel='stylesheet', href='/fontawesome/css/fontawesome-all.min.css')
     link(rel='stylesheet', href='/dice-logger.css')
   body
-    nav.navbar(role='navigation', aria-label='main navigation')
-      .navbar-brand
-        a.navbar-item(href='/').title.is-3.is-uppercase Dice Logger
-      .navbar-menu
-        .navbar-end
-          .navbar-item
-            form(method='POST', action='/')
-              .field
-                .control.has-text-centered
-                  button.button.is-danger.is-5e
-                    span.icon
-                      i.fas.fa-plus
-                    span New Log
+    section
+      .container
+        nav.navbar(role='navigation', aria-label='main navigation')
+          .navbar-brand
+            a.navbar-item(href='/').title.is-3.is-uppercase Dice Logger
+          .navbar-menu
+            .navbar-end
+              .navbar-item
+                form(method='POST', action='/')
+                  .field
+                    .control.has-text-centered
+                      button.button.is-danger.is-5e
+                        span.icon
+                          i.fas.fa-plus
+                        span New Log
 
-    section.hero.is-danger.is-5e
-      .hero-body
-        .container
-          if log.name && log.name.length
-            h1.title #{log.name}
-          else
-            h1.title Log ##{log.id}
-          if edit
-            .subtitle.is-6
-              span Share your rolls: 
-              a(href=`/${log.id}`)
-                span.icon
-                  i.fas.fa-share-square
-                span #{baseUrl}/#{log.id}
+    if !edit
+      section.hero.is-danger.is-5e
+        .hero-body
+          .container
+            if log.name && log.name.length
+              h1.title #{log.name}
+            else
+              h1.title Log ##{log.id}
 
     if edit
       section.hero.is-light
@@ -96,27 +92,37 @@ html(lang='en')
         .hero-body
           .container
 
-          .has-text-centered.is-size-7.has-text-grey
-            div.has-text-weight-bold
-              span.icon
-                i.fas.fa-exclamation-triangle
-              span Save the URL below so you can add rolls to this log later. Only this URL allows you to add to your log.
-            div
-              a(href=`/${log.id}/edit/${log.key}`)
+            .has-text-centered.is-size-7.has-text-grey
+              div.has-text-weight-bold
                 span.icon
-                  i.far.fa-edit
-                span #{baseUrl}/#{log.id}/edit/#{log.key}
-            br
+                  i.fas.fa-exclamation-triangle
+                span Save the URL below so you can add rolls to this log later. Only this URL allows you to add to your log.
+              div
+                a(href=`/${log.id}/edit/${log.key}`)
+                  span.icon
+                    i.far.fa-edit
+                  span #{baseUrl}/#{log.id}/edit/#{log.key}
+              br
+              div.has-text-weight-bold
+                span.icon
+                  i.fas.fa-globe
+                span Share your rolls with the world (read-only).
+              div
+                a(href=`/${log.id}`)
+                  span.icon
+                    i.far.fa-share-square
+                  span #{baseUrl}/#{log.id}
+              br
 
-            hr
+              hr
 
-            form(method='POST')
-              .field
-                .control
-                  input.input(type='text', name='name', value=log.name, maxlength=32, placeholder=(log.name || log.id))
-              .field
-                .control
-                  button.button
-                    span.icon
-                      i.far.fa-save
-                    span Rename Log
+              form(method='POST')
+                .field
+                  .control
+                    input.input(type='text', name='name', value=log.name, maxlength=32, placeholder=(log.name || log.id))
+                .field
+                  .control
+                    button.button
+                      span.icon
+                        i.far.fa-save
+                      span Rename Log

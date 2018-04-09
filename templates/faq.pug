@@ -7,19 +7,21 @@ html(lang='en')
     link(rel='stylesheet', href='/fontawesome/css/fontawesome-all.min.css')
     link(rel='stylesheet', href='/dice-logger.css')
   body
-    nav.navbar(role='navigation', aria-label='main navigation')
-      .navbar-brand
-        a.navbar-item(href='/').title.is-3.is-uppercase Dice Logger
-      .navbar-menu
-        .navbar-end
-          .navbar-item
-            form(method='POST', action='/')
-              .field
-                .control.has-text-centered
-                  button.button.is-danger.is-5e
-                    span.icon
-                      i.fas.fa-plus
-                    span New Log
+    section
+      .container
+        nav.navbar(role='navigation', aria-label='main navigation')
+          .navbar-brand
+            a.navbar-item(href='/').title.is-3.is-uppercase Dice Logger
+          .navbar-menu
+            .navbar-end
+              .navbar-item
+                form(method='POST', action='/')
+                  .field
+                    .control.has-text-centered
+                      button.button.is-danger.is-5e
+                        span.icon
+                          i.fas.fa-plus
+                        span New Log
 
     section.hero.is-danger.is-5e
       .hero-body
