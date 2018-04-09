@@ -1,4 +1,4 @@
-mixin entry(entry)
+mixin entry(entry, moment)
   .box.dl-entry(id=entry.created_at.getTime())
     article.media
       .media-left
@@ -12,7 +12,14 @@ mixin entry(entry)
           else
             blockquote.dl-entry-message.has-text-grey-light: i No message provided.
           div.is-size-7.has-text-grey.has-text-right
-            span #{entry.created_at.toLocaleDateString()} #{entry.created_at.toLocaleTimeString('en-US', { hour12: true })}
+            // span #{entry.created_at.toLocaleDateString()} #{entry.created_at.toLocaleTimeString('en-US', { hour12: true })}
+            span.dl-log-name
+              if entry.name && entry.name.length
+                a(href=`/${entry.log_id}`).has-text-grey: strong #{entry.name}
+              else
+                a(href=`/${entry.log_id}`).has-text-grey Anonymous Log
+              |  – 
+            span #{moment(entry.created_at).fromNow()}
             a(href=`/${entry.log_id}#${entry.created_at.getTime()}`).has-text-grey
               span.icon
                 i.fas.fa-share-square

@@ -85,7 +85,7 @@ html(lang='en')
               p Nothing has been rolled for this log yet!
         else
           each entry in entries
-            +entry(entry)
+            +entry(entry, moment)
           if entries.length < 100
             .has-text-grey.has-text-centered Showing all #{entries.length} log entries.
           else

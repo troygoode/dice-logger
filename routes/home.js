@@ -1,4 +1,5 @@
 const pug = require('pug')
+const moment = require('moment')
 const fetchRecentEntries = require('../queries/fetch-recent-entries')
 
 module.exports = (app, pg) => {
@@ -6,7 +7,8 @@ module.exports = (app, pg) => {
     try {
       const entries = await fetchRecentEntries(pg)
       res.send(pug.renderFile('templates/home.pug', {
-        entries: entries
+        entries,
+        moment
       }))
     } catch (err) {
       next(err)

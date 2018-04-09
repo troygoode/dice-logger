@@ -1,5 +1,6 @@
 const pug = require('pug')
 const boom = require('boom')
+const moment = require('moment')
 const fetchLog = require('../queries/fetch-log')
 const fetchLogEntries = require('../queries/fetch-log-entries')
 
@@ -17,9 +18,10 @@ module.exports = (app, pg) => {
 
       res.send(pug.renderFile('templates/log.pug', {
         edit: false,
-        log: log,
-        entries: entries,
-        baseUrl: process.env.BASE_URL || DEFAULT_BASE_URL
+        baseUrl: process.env.BASE_URL || DEFAULT_BASE_URL,
+        log,
+        entries,
+        moment
       }))
     } catch (err) {
       next(err)
@@ -37,12 +39,13 @@ module.exports = (app, pg) => {
 
       res.send(pug.renderFile('templates/log.pug', {
         edit: true,
-        log: log,
-        entries: entries,
         baseUrl: process.env.BASE_URL || DEFAULT_BASE_URL,
         error: req.query.error,
         message: req.query.message,
-        roll: req.query.roll
+        roll: req.query.roll,
+        log,
+        entries,
+        moment
       }))
     } catch (err) {
       next(err)

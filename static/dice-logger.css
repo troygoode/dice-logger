@@ -30,3 +30,10 @@ button.is-5e:hover {
 }
 .dl-entry-bottom {
 }
+
+.dl-log-name {
+  display: none;
+}
+.dl-page-home .dl-log-name {
+  display: inline;
+}

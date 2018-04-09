@@ -7,7 +7,7 @@ html(lang='en')
     link(rel='stylesheet', href='/bulma.css')
     link(rel='stylesheet', href='/fontawesome/css/fontawesome-all.min.css')
     link(rel='stylesheet', href='/dice-logger.css')
-  body
+  body.dl-page-home
     section.section
       .container
         h1.title.is-1.has-text-centered.is-uppercase Dice Logger
@@ -46,7 +46,7 @@ html(lang='en')
                 p Nothing has been logged... yet.
           else
             for entry in entries
-              +entry(entry)
+              +entry(entry, moment)
 
     section.hero.is-danger.is-5e
       .hero-body
