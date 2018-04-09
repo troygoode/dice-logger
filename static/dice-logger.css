@@ -28,6 +28,11 @@ button.is-5e:hover {
 .dl-entry-message {
   min-height: 15px;
 }
+.dl-entry-message-blank {
+  text-align: center;
+  background-color: white !important;
+  border: none !important;
+}
 .dl-entry-bottom {
 }
 
@@ -41,4 +46,11 @@ button.is-5e:hover {
 .navbar-brand:hover .navbar-item {
   background-color: transparent;
   color: #df0000;
+}
+
+.dl-log-name a:hover {
+  text-decoration: underline;
+}
+.dl-log-name a strong {
+  color: #df0000 !important;
 }

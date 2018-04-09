@@ -10,16 +10,16 @@ mixin entry(entry, moment)
           if entry.message && entry.message.length
             blockquote.dl-entry-message.has-text-weight-semibold #{entry.message}
           else
-            blockquote.dl-entry-message.has-text-grey-light: i No message provided.
+            blockquote.dl-entry-message.dl-entry-message-blank.has-text-grey-light No description.
           div.is-size-7.has-text-grey.has-text-right
             // span #{entry.created_at.toLocaleDateString()} #{entry.created_at.toLocaleTimeString('en-US', { hour12: true })}
             span.dl-log-name
               if entry.name && entry.name.length
                 a(href=`/${entry.log_id}`).has-text-grey: strong #{entry.name}
               else
-                a(href=`/${entry.log_id}`).has-text-grey Anonymous Log
+                a(href=`/${entry.log_id}`).has-text-grey: em anonymous log entry
               |  – 
             span #{moment(entry.created_at).fromNow()}
             a(href=`/${entry.log_id}#${entry.created_at.getTime()}`).has-text-grey
               span.icon
-                i.fas.fa-share-square
+                i.far.fa-clock

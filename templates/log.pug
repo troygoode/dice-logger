@@ -96,7 +96,9 @@ html(lang='en')
               div.has-text-weight-bold
                 span.icon
                   i.fas.fa-exclamation-triangle
-                span Save the URL below so you can add rolls to this log later. Only this URL allows you to add to your log.
+                span Save the URL below so you can add rolls to this log later. Only this URL allows you to add to your log:
+                span.icon
+                  i.fas.fa-exclamation-triangle
               div
                 a(href=`/${log.id}/edit/${log.key}`)
                   span.icon
@@ -104,9 +106,7 @@ html(lang='en')
                   span #{baseUrl}/#{log.id}/edit/#{log.key}
               br
               div.has-text-weight-bold
-                span.icon
-                  i.fas.fa-globe
-                span Share your rolls with the world (read-only).
+                span Share your rolls with the world (read-only):
               div
                 a(href=`/${log.id}`)
                   span.icon
