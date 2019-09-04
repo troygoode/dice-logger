@@ -1,0 +1,30 @@
+{
+  "addons": [
+    "heroku-postgresql"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "env": {
+    "BASE_URL": {
+      "required": true
+    },
+    "NODE_ENV": {
+      "required": true
+    },
+    "DATABASE_URL": {
+      "required": true
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "name": "dice-logger",
+  "scripts": {
+  },
+  "stack": "heroku-18"
+}
