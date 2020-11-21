@@ -6,13 +6,13 @@
   "author": "Troy Goode <troygoode@gmail.com>",
   "license": "MIT",
   "engines": {
-    "node": "^8.9.1"
+    "node": "^12.19.0"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
     "boom": "^7.1.1",
     "express": "^4.16.2",
-    "helmet": "^3.9.0",
+    "helmet": "^4.2.0",
     "moment": "^2.22.0",
     "pg": "^7.4.0",
     "pg-connection-string": "^2.0.0",
