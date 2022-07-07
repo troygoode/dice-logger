@@ -13,7 +13,7 @@
     "boom": "^7.1.1",
     "express": "^4.16.2",
     "helmet": "^4.2.0",
-    "moment": "^2.22.0",
+    "moment": "^2.29.4",
     "pg": "^7.4.0",
     "pg-connection-string": "^2.0.0",
     "pug": "^2.0.0-rc.4",
